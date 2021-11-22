@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-The HLSLForCSharp libary uses the SharpDX libary. This can be downloaded from the nuget package manager. It uses the following specific libaries:
+The HLSLForCSharp libary uses the [SharpDX](https://github.com/sharpdx/SharpDX) libary. This can be downloaded from the nuget package manager. It uses the following specific libaries:
 	
 - SharpDX
 - SharpDX.D3DCompiler
