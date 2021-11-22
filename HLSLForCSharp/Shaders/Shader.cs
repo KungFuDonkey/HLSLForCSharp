@@ -13,23 +13,50 @@ using HLSLForCSharp.Shaders.Settings;
 
 namespace HLSLForCSharp.Shaders
 {
+    /// <summary>
+    /// Shader for an HLSL shader
+    /// </summary>
     public abstract class Shader : IDisposable
     {
+        /// <summary>
+        /// The shader that is currently in use
+        /// </summary>
         protected static Shader stagedShader;
+
+        /// <summary>
+        /// The device that this shader is on
+        /// </summary>
         protected Device device;
 
+        /// <summary>
+        /// The context of the device
+        /// </summary>
+        protected DeviceContext context;
+
+        /// <summary>
+        /// The buffers of the shader, with their given slots
+        /// </summary>
         protected Dictionary<int, RWStructuredBuffer> RWStructuredBuffers = new Dictionary<int, RWStructuredBuffer>();
         protected Dictionary<int, StructuredBuffer> StructuredBuffers = new Dictionary<int, StructuredBuffer>();
         protected List<int> RWSlots = new List<int>();
         protected List<int> StructuredSlots = new List<int>();
 
-        protected DeviceContext context;
+        
         protected Shader(Device device)
         {
             this.device = device;
         }
 
         #region Buffers
+
+        /// <summary>
+        /// Creates a DirectX buffer
+        /// </summary>
+        /// <typeparam name="Tin"></typeparam>
+        /// <param name="bufferData"></param>
+        /// <param name="elementSize"></param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
         private SharpDX.Direct3D11.Buffer CreateBuffer<Tin>(Tin[] bufferData, int elementSize, BufferSettings settings) where Tin : struct
         {
             BufferDescription inputDesc = new BufferDescription()
@@ -45,6 +72,12 @@ namespace HLSLForCSharp.Shaders
             return buffer;
         }
 
+        /// <summary>
+        /// Retrieves a read-write buffer from the GPU
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="slot"></param>
+        /// <returns></returns>
         public T[] GetParsedRWBuffer<T>(int slot) where T : struct
         {
             RWStructuredBuffer computeBuffer = RWStructuredBuffers[slot];
@@ -53,11 +86,27 @@ namespace HLSLForCSharp.Shaders
         }
 
         #region RWStructuredBuffer
+
+        /// <summary>
+        /// Sets a read-write buffer on the GPU
+        /// </summary>
+        /// <typeparam name="Tin"></typeparam>
+        /// <param name="bufferData"></param>
+        /// <param name="elementSize"></param>
+        /// <param name="slot"></param>
         public void SetRWStructuredBuffer<Tin>(Tin[] bufferData, int elementSize, int slot) where Tin : struct
         {
             SetRWStructuredBuffer<Tin>(bufferData, elementSize, slot, RWStructuredBufferSettings.Standard);
         }
 
+        /// <summary>
+        /// Sets a read-write buffer on the GPU with settings
+        /// </summary>
+        /// <typeparam name="Tin"></typeparam>
+        /// <param name="bufferData"></param>
+        /// <param name="elementSize"></param>
+        /// <param name="slot"></param>
+        /// <param name="settings"></param>
         public void SetRWStructuredBuffer<Tin>(Tin[] bufferData, int elementSize, int slot, RWStructuredBufferSettings settings) where Tin : struct
         {
             if (stagedShader != this) throw new Exception("Shader was not staged");
@@ -87,6 +136,11 @@ namespace HLSLForCSharp.Shaders
             RWSlots.Add(slot);
         }
 
+        /// <summary>
+        /// Gets the RWStructured buffer struct
+        /// </summary>
+        /// <param name="slot"></param>
+        /// <returns></returns>
         public RWStructuredBuffer GetRWStructuredBuffer(int slot)
         {
             return RWStructuredBuffers[slot];
@@ -94,11 +148,27 @@ namespace HLSLForCSharp.Shaders
         #endregion
 
         #region StructuredBuffers
+
+        /// <summary>
+        /// Sets a stuctured buffer on the GPU
+        /// </summary>
+        /// <typeparam name="Tin"></typeparam>
+        /// <param name="bufferData"></param>
+        /// <param name="elementSize"></param>
+        /// <param name="slot"></param>
         public void SetStructuredBuffer<Tin>(Tin[] bufferData, int elementSize, int slot) where Tin : struct
         {
             SetStructuredBuffer<Tin>(bufferData, elementSize, slot, StructuredBufferSettings.Standard);
         }
 
+        /// <summary>
+        /// Sets a stuctured buffer on the GPU with settings
+        /// </summary>
+        /// <typeparam name="Tin"></typeparam>
+        /// <param name="bufferData"></param>
+        /// <param name="elementSize"></param>
+        /// <param name="slot"></param>
+        /// <param name="settings"></param>
         public void SetStructuredBuffer<Tin>(Tin[] bufferData, int elementSize, int slot, StructuredBufferSettings settings) where Tin : struct
         {
             if (stagedShader != this) throw new Exception("Shader was not staged");
@@ -128,6 +198,11 @@ namespace HLSLForCSharp.Shaders
             StructuredSlots.Add(slot);
         }
 
+        /// <summary>
+        /// Gets the structuredBuffer struct
+        /// </summary>
+        /// <param name="slot"></param>
+        /// <returns></returns>
         public StructuredBuffer GetStructuredBuffer(int slot)
         {
             return StructuredBuffers[slot];
@@ -137,6 +212,10 @@ namespace HLSLForCSharp.Shaders
         #endregion
 
         #region Staging
+
+        /// <summary>
+        /// Stages the shader for use on the GPU
+        /// </summary>
         public void Stage()
         {
             if (stagedShader != null)
@@ -148,8 +227,14 @@ namespace HLSLForCSharp.Shaders
             SetStage();
         }
 
-        internal abstract void SetStage();
+        /// <summary>
+        /// Abstract as all different shaders stage differently
+        /// </summary>
+        protected abstract void SetStage();
 
+        /// <summary>
+        /// Unstages the shader and disposes all uavs and srvs
+        /// </summary>
         public virtual void UnStage()
         {
             for (int i = RWSlots.Count - 1; i >= 0; i--)

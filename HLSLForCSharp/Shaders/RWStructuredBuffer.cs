@@ -10,6 +10,9 @@ using SharpDX.D3DCompiler;
 
 namespace HLSLForCSharp.Shaders
 {
+    /// <summary>
+    /// A read write structured buffer
+    /// </summary>
     public struct RWStructuredBuffer
     {
         public int bufferSize;

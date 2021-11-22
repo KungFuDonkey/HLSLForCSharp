@@ -13,6 +13,9 @@ using SharpDX.Win32;
 
 namespace HLSLForCSharp.Shaders
 {
+    /// <summary>
+    /// Loads textures, and transfroms them into Texture2D objects
+    /// </summary>
     public class TextureLoader
     {
         public static Texture2D CreateTexture2DFromBitmapFile(string path)

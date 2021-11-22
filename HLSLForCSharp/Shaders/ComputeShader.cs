@@ -13,8 +13,13 @@ namespace HLSLForCSharp.Shaders
 {
     public class ComputeShader : Shader, IDisposable
     {
+        /// <summary>
+        /// The size of a thread group
+        /// </summary>
         public int groupSize { get; private set; }
         SharpDX.Direct3D11.ComputeShader shader;
+
+        #region Constructors
 
         public ComputeShader(string shaderPath, int groupSize) : this(DeviceManager.device, shaderPath, groupSize, ComputeShaderSettings.Standard) { }
 
@@ -31,8 +36,10 @@ namespace HLSLForCSharp.Shaders
             bytecode.Dispose();
         }
 
+        #endregion
+
         #region Staging
-        internal override void SetStage()
+        protected override void SetStage()
         {
             //Set up shader
             context = device.ImmediateContext;
@@ -69,6 +76,12 @@ namespace HLSLForCSharp.Shaders
         }
         #endregion
 
+        /// <summary>
+        /// Dispatch work groups on the GPU
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public void DispatchCompute(int x, int y, int z)
         {
             context.Dispatch(x, y, z);
