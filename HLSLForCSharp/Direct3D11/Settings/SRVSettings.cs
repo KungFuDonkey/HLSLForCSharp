@@ -8,18 +8,19 @@ using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.D3DCompiler;
 
-namespace HLSLForCSharp.Shaders.Settings
+namespace HLSLForCSharp.Direct3D11.Settings
 {
-    public struct UAVSettings
+    public struct SRVSettings
     {
         public Format format;
-        public UnorderedAccessViewDimension dimension;
-        public UAVSettings(Format format, UnorderedAccessViewDimension dimension)
+        public ShaderResourceViewDimension dimension;
+
+        public SRVSettings(Format format, ShaderResourceViewDimension dimension)
         {
             this.format = format;
             this.dimension = dimension;
         }
 
-        public static UAVSettings RWBufferStandard = new UAVSettings(Format.Unknown, UnorderedAccessViewDimension.Buffer);
+        public static SRVSettings StructuredBufferStandard = new SRVSettings(Format.Unknown, ShaderResourceViewDimension.Buffer);
     }
 }

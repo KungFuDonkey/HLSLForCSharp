@@ -8,21 +8,21 @@ using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.D3DCompiler;
 
-namespace HLSLForCSharp.Shaders
+namespace HLSLForCSharp.Direct3D11
 {
     /// <summary>
-    /// A structured buffer
+    /// A read write structured buffer
     /// </summary>
-    public struct StructuredBuffer
+    public struct RWStructuredBuffer
     {
         public int bufferSize;
         public SharpDX.Direct3D11.Buffer buffer;
-        public ShaderResourceView srv;
-        public StructuredBuffer(int bufferSize, SharpDX.Direct3D11.Buffer buffer, ShaderResourceView srv)
+        public UnorderedAccessView uav;
+        public RWStructuredBuffer(int bufferSize, SharpDX.Direct3D11.Buffer buffer, UnorderedAccessView uav)
         {
             this.bufferSize = bufferSize;
             this.buffer = buffer;
-            this.srv = srv;
+            this.uav = uav;
         }
     }
 }

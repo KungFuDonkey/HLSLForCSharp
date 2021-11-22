@@ -1,5 +1,5 @@
 ﻿using System;
-using HLSLForCSharp.Shaders;
+using HLSLForCSharp.Direct3D11;
 namespace HLSLForCSharpExample
 {
     class Program

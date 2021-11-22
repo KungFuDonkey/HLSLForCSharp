@@ -7,8 +7,8 @@ using SharpDX;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.D3DCompiler;
-using HLSLForCSharp.Shaders.Settings;
-namespace HLSLForCSharp.Shaders
+using HLSLForCSharp.Direct3D11.Settings;
+namespace HLSLForCSharp.Direct3D11
 {
     public class DeviceManager
     {

@@ -1,7 +1,9 @@
-RWStructuredBuffer<int> Result;
 
+
+RWStructuredBuffer<int> buffer;
+uniform int multiplier;
 [numthreads(2, 1, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    Result[id.x] = Result[id.x] * 8;
+    buffer[id.x] = buffer[id.x] * multiplier;
 }

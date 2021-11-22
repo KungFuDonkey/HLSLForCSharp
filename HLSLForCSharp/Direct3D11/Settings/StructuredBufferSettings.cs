@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HLSLForCSharp.Shaders.Settings
+namespace HLSLForCSharp.Direct3D11.Settings
 {
     public struct StructuredBufferSettings 
     {

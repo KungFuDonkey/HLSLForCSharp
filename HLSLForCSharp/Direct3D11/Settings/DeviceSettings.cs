@@ -4,21 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SharpDX;
-using SharpDX.DXGI;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.D3DCompiler;
-namespace HLSLForCSharp.Shaders.Settings
+
+namespace HLSLForCSharp.Direct3D11.Settings
 {
-    public struct DeviceAdapterSettings
+    public struct DeviceSettings
     {
-        public Adapter adapter;
+        public DriverType driverType;
         public DeviceCreationFlags creationFlags;
         public FeatureLevel[] featureLevels;
-
-        public DeviceAdapterSettings(Adapter adapter, DeviceCreationFlags creationFlags, params FeatureLevel[] featureLevels)
+        public DeviceSettings(DriverType driverType, DeviceCreationFlags creationFlags, params FeatureLevel[] featureLevels)
         {
-            this.adapter = adapter;
+            this.driverType = driverType;
             this.creationFlags = creationFlags;
             this.featureLevels = featureLevels;
         }

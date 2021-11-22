@@ -11,7 +11,7 @@ using SharpDX.Win32;
 
 
 
-namespace HLSLForCSharp.Shaders
+namespace HLSLForCSharp.Direct3D11
 {
     /// <summary>
     /// Loads textures, and transfroms them into Texture2D objects

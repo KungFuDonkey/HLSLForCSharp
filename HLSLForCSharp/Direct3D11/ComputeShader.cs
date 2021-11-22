@@ -7,9 +7,9 @@ using SharpDX;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.D3DCompiler;
-using HLSLForCSharp.Shaders.Settings;
+using HLSLForCSharp.Direct3D11.Settings;
 
-namespace HLSLForCSharp.Shaders
+namespace HLSLForCSharp.Direct3D11
 {
     public class ComputeShader : Shader, IDisposable
     {

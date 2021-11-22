@@ -7,7 +7,7 @@ using SharpDX;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.D3DCompiler;
-namespace HLSLForCSharp.Shaders.Settings
+namespace HLSLForCSharp.Direct3D11.Settings
 {
     public struct ComputeShaderSettings
     {

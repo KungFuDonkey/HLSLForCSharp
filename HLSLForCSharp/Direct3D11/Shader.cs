@@ -9,9 +9,9 @@ using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.D3DCompiler;
 using SharpDX.Multimedia;
-using HLSLForCSharp.Shaders.Settings;
+using HLSLForCSharp.Direct3D11.Settings;
 
-namespace HLSLForCSharp.Shaders
+namespace HLSLForCSharp.Direct3D11
 {
     /// <summary>
     /// Shader for an HLSL shader
@@ -45,6 +45,11 @@ namespace HLSLForCSharp.Shaders
         protected Shader(Device device)
         {
             this.device = device;
+        }
+
+        public void SetUniformVariable<T>(T value, int slot)
+        {
+
         }
 
         #region Buffers

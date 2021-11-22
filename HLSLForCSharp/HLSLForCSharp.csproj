@@ -63,20 +63,20 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Shaders\RWStructuredBuffer.cs" />
-    <Compile Include="Shaders\ComputeShader.cs" />
-    <Compile Include="Shaders\Settings\BufferSettings.cs" />
-    <Compile Include="Shaders\Settings\ComputeShaderSettings.cs" />
-    <Compile Include="Shaders\DeviceManager.cs" />
-    <Compile Include="Shaders\Settings\DeviceAdapterSettings.cs" />
-    <Compile Include="Shaders\Settings\DeviceSettings.cs" />
-    <Compile Include="Shaders\Settings\RWStructuredBufferSettings.cs" />
-    <Compile Include="Shaders\Settings\SRVSettings.cs" />
-    <Compile Include="Shaders\Settings\StructuredBufferSettings.cs" />
-    <Compile Include="Shaders\Settings\UAVSettings.cs" />
-    <Compile Include="Shaders\Shader.cs" />
-    <Compile Include="Shaders\StructuredBuffer.cs" />
-    <Compile Include="Shaders\TextureLoader.cs" />
+    <Compile Include="Direct3D11\Shaders\RWStructuredBuffer.cs" />
+    <Compile Include="Direct3D11\Shaders\ComputeShader.cs" />
+    <Compile Include="Direct3D11\Shaders\Settings\BufferSettings.cs" />
+    <Compile Include="Direct3D11\Shaders\Settings\ComputeShaderSettings.cs" />
+    <Compile Include="Direct3D11\Shaders\DeviceManager.cs" />
+    <Compile Include="Direct3D11\Shaders\Settings\DeviceAdapterSettings.cs" />
+    <Compile Include="Direct3D11\Shaders\Settings\DeviceSettings.cs" />
+    <Compile Include="Direct3D11\Shaders\Settings\RWStructuredBufferSettings.cs" />
+    <Compile Include="Direct3D11\Shaders\Settings\SRVSettings.cs" />
+    <Compile Include="Direct3D11\Shaders\Settings\StructuredBufferSettings.cs" />
+    <Compile Include="Direct3D11\Shaders\Settings\UAVSettings.cs" />
+    <Compile Include="Direct3D11\Shaders\Shader.cs" />
+    <Compile Include="Direct3D11\Shaders\StructuredBuffer.cs" />
+    <Compile Include="Direct3D11\Shaders\TextureLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

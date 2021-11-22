@@ -40,3 +40,4 @@ When making a pull request please:
 - Add support for uniform, texture2D and sampler
 - Add support for creating a window
 - Add support for a render pipeline
+- Add support for DX12
