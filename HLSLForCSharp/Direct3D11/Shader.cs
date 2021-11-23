@@ -204,7 +204,7 @@ namespace HLSLForCSharp.Direct3D11
                 {
                     ElementWidth = elementSize,
                     ElementCount = bufferData.Length,
-                    ElementOffset = 0,
+                    ElementOffset = elementSize,
                     FirstElement = 0
                 }
             };
