@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HLSLForCSharp.Direct3D11.Settings
+﻿namespace HLSLForCSharp.Direct3D11.Settings
 {
     public struct RWStructuredBufferSettings
     {

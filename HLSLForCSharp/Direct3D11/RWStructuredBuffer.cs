@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SharpDX;
-using SharpDX.Direct3D;
-using SharpDX.Direct3D11;
-using SharpDX.D3DCompiler;
+﻿using SharpDX.Direct3D11;
 
 namespace HLSLForCSharp.Direct3D11
 {
@@ -16,9 +8,9 @@ namespace HLSLForCSharp.Direct3D11
     public struct RWStructuredBuffer
     {
         public int bufferSize;
-        public SharpDX.Direct3D11.Buffer buffer;
+        public Buffer buffer;
         public UnorderedAccessView uav;
-        public RWStructuredBuffer(int bufferSize, SharpDX.Direct3D11.Buffer buffer, UnorderedAccessView uav)
+        public RWStructuredBuffer(int bufferSize, Buffer buffer, UnorderedAccessView uav)
         {
             this.bufferSize = bufferSize;
             this.buffer = buffer;

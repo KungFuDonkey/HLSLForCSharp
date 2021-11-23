@@ -40,6 +40,9 @@
     <Reference Include="SharpDX.Direct3D11, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.Direct3D11.4.2.0\lib\net45\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
+    <Reference Include="SharpDX.Direct3D12, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D12.4.2.0\lib\net45\SharpDX.Direct3D12.dll</HintPath>
+    </Reference>
     <Reference Include="SharpDX.DXGI, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.DXGI.4.2.0\lib\net45\SharpDX.DXGI.dll</HintPath>
     </Reference>
@@ -63,20 +66,20 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Direct3D11\Shaders\RWStructuredBuffer.cs" />
-    <Compile Include="Direct3D11\Shaders\ComputeShader.cs" />
-    <Compile Include="Direct3D11\Shaders\Settings\BufferSettings.cs" />
-    <Compile Include="Direct3D11\Shaders\Settings\ComputeShaderSettings.cs" />
-    <Compile Include="Direct3D11\Shaders\DeviceManager.cs" />
-    <Compile Include="Direct3D11\Shaders\Settings\DeviceAdapterSettings.cs" />
-    <Compile Include="Direct3D11\Shaders\Settings\DeviceSettings.cs" />
-    <Compile Include="Direct3D11\Shaders\Settings\RWStructuredBufferSettings.cs" />
-    <Compile Include="Direct3D11\Shaders\Settings\SRVSettings.cs" />
-    <Compile Include="Direct3D11\Shaders\Settings\StructuredBufferSettings.cs" />
-    <Compile Include="Direct3D11\Shaders\Settings\UAVSettings.cs" />
-    <Compile Include="Direct3D11\Shaders\Shader.cs" />
-    <Compile Include="Direct3D11\Shaders\StructuredBuffer.cs" />
-    <Compile Include="Direct3D11\Shaders\TextureLoader.cs" />
+    <Compile Include="Direct3D11\RWStructuredBuffer.cs" />
+    <Compile Include="Direct3D11\ComputeShader.cs" />
+    <Compile Include="Direct3D11\Settings\BufferSettings.cs" />
+    <Compile Include="Direct3D11\Settings\ComputeShaderSettings.cs" />
+    <Compile Include="Direct3D11\DeviceManager.cs" />
+    <Compile Include="Direct3D11\Settings\DeviceAdapterSettings.cs" />
+    <Compile Include="Direct3D11\Settings\DeviceSettings.cs" />
+    <Compile Include="Direct3D11\Settings\RWStructuredBufferSettings.cs" />
+    <Compile Include="Direct3D11\Settings\SRVSettings.cs" />
+    <Compile Include="Direct3D11\Settings\StructuredBufferSettings.cs" />
+    <Compile Include="Direct3D11\Settings\UAVSettings.cs" />
+    <Compile Include="Direct3D11\Shader.cs" />
+    <Compile Include="Direct3D11\StructuredBuffer.cs" />
+    <Compile Include="Direct3D11\TextureLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -84,6 +87,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Direct3D12\Shader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

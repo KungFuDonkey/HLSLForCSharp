@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using SharpDX;
-using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
-using SharpDX.D3DCompiler;
-using SharpDX.Multimedia;
 using HLSLForCSharp.Direct3D11.Settings;
 
 namespace HLSLForCSharp.Direct3D11
