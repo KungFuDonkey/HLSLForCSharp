@@ -11,6 +11,6 @@
             this.BufferSettings = BufferSettings;
         }
 
-        public static StructuredBufferSettings Standard = new StructuredBufferSettings(SRVSettings.StructuredBufferStandard, BufferSettings.RWBufferStandard);
+        public static StructuredBufferSettings Standard = new StructuredBufferSettings(SRVSettings.StructuredBufferStandard, BufferSettings.StructuredBufferStandard);
     }
 }

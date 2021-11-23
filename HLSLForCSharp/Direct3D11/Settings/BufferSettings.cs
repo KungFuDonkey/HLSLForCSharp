@@ -16,5 +16,6 @@ namespace HLSLForCSharp.Direct3D11.Settings
         }
 
         public static BufferSettings RWBufferStandard = new BufferSettings(ResourceUsage.Default, BindFlags.UnorderedAccess, ResourceOptionFlags.BufferStructured, CpuAccessFlags.Read);
+        public static BufferSettings StructuredBufferStandard = new BufferSettings(ResourceUsage.Default, BindFlags.ShaderResource, ResourceOptionFlags.BufferStructured, CpuAccessFlags.Write);
     }
 }

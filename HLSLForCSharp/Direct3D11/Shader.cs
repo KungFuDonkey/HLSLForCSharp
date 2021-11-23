@@ -41,9 +41,16 @@ namespace HLSLForCSharp.Direct3D11
             this.device = device;
         }
 
-        public void SetUniformVariable<T>(T value, int slot)
+        public void SetUniformVariable<T>(T value, int elementSize, int slot) where T : struct
         {
+            SetUniformVariable(value, elementSize, slot, UniformVariableSettings.Standard);
+        }
 
+        public void SetUniformVariable<T>(T value, int elementSize, int slot, UniformVariableSettings settings) where T : struct
+        {
+            if (stagedShader != this) throw new Exception("Shader was not staged");
+            T[] arr = new T[1] { value };
+            SetStructuredBuffer(arr, elementSize, slot, new StructuredBufferSettings(settings.SRVSettings, settings.BufferSettings));
         }
 
         #region Buffers
@@ -68,6 +75,21 @@ namespace HLSLForCSharp.Direct3D11
                 CpuAccessFlags = settings.CPUAccessFlags
             };
             SharpDX.Direct3D11.Buffer buffer = SharpDX.Direct3D11.Buffer.Create(device, bufferData, inputDesc);
+            return buffer;
+        }
+
+        private SharpDX.Direct3D11.Buffer CreateBuffer<Tin>(Tin bufferData, int elementSize, BufferSettings settings) where Tin : struct
+        {
+            BufferDescription inputDesc = new BufferDescription()
+            {
+                SizeInBytes = 16,
+                Usage = settings.usage,
+                BindFlags = settings.bindFlags,
+                OptionFlags = settings.options,
+                StructureByteStride = elementSize,
+                CpuAccessFlags = settings.CPUAccessFlags
+            };
+            SharpDX.Direct3D11.Buffer buffer = SharpDX.Direct3D11.Buffer.Create(device, ref bufferData, inputDesc);
             return buffer;
         }
 
@@ -173,14 +195,17 @@ namespace HLSLForCSharp.Direct3D11
             if (stagedShader != this) throw new Exception("Shader was not staged");
             SharpDX.Direct3D11.Buffer buffer = CreateBuffer(bufferData, elementSize, settings.BufferSettings);
 
-
+            
             ShaderResourceViewDescription srvDesc = new ShaderResourceViewDescription()
             {
                 Format = settings.SRVSettings.format,
                 Dimension = settings.SRVSettings.dimension,
                 Buffer = new ShaderResourceViewDescription.BufferResource()
                 {
-                    ElementWidth = elementSize
+                    ElementWidth = elementSize,
+                    ElementCount = bufferData.Length,
+                    ElementOffset = 0,
+                    FirstElement = 0
                 }
             };
             ShaderResourceView srv = new ShaderResourceView(device, buffer, srvDesc);
@@ -188,7 +213,7 @@ namespace HLSLForCSharp.Direct3D11
             SetConstantBuffer(slot, buffer);
             SetShaderResource(slot, srv);
 
-            if (RWStructuredBuffers.ContainsKey(slot))
+            if (StructuredBuffers.ContainsKey(slot))
             {
                 StructuredBuffers[slot] = new StructuredBuffer(bufferData.Length, buffer, srv);
                 return;
@@ -248,8 +273,8 @@ namespace HLSLForCSharp.Direct3D11
             for (int i = StructuredSlots.Count - 1; i >= 0; i--)
             {
                 StructuredBuffer buffer = StructuredBuffers[StructuredSlots[i]];
-                RWStructuredBuffers.Remove(RWSlots[i]);
-                RWSlots.RemoveAt(i);
+                StructuredBuffers.Remove(StructuredSlots[i]);
+                StructuredSlots.RemoveAt(i);
                 Utilities.Dispose(ref buffer.srv);
                 Utilities.Dispose(ref buffer.buffer);
             }
